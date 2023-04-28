@@ -1,0 +1,4 @@
+# created by virtualenv automatically
+venv/bin
+db.sqlite3
+.idea
