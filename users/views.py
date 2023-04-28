@@ -10,6 +10,12 @@ class UserApiView(generics.ListCreateAPIView):
     permission_classes = (IsAdminUser, )
 
 
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsAdminUser, )
+
+
 class RegisterApiView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = (AllowAny, )
