@@ -6,16 +6,17 @@ from rest_framework.views import APIView
 
 from .models import Order, OrderItem
 from .serializers import OrderSerializer, OrderItemSerializer
-from .permissions import IsOwner
+from store_root.permissions import IsOwner
 
 
 class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsOwner,  )
 
 
 class OrderDetail(APIView):
+    permission_classes = (IsAdminUser, IsOwner, )
     def get_object(self, pk):
         try:
             return Order.objects.get(pk=pk)
@@ -44,10 +45,11 @@ class OrderDetail(APIView):
 class OrderItemList(generics.ListCreateAPIView):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminUser, IsOwner, )
 
 
 class OrderItemDetail(APIView):
+    permission_classes = (IsAdminUser, IsOwner, )
     def get_object(self, pk):
         try:
             return Order.objects.get(pk=pk)
