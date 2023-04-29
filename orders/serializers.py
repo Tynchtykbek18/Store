@@ -14,8 +14,11 @@ class OrderItemSerializer(serializers.ModelSerializer):
     def get_product_quantity(self, obj):
         item_quantity = obj.quantity
         product_quantity = obj.product.quantity
+        pr = Product()
+        pr_q = pr.quantity
 
         if item_quantity <= product_quantity:
+            pr_q = pr_q - item_quantity
             obj.save()
             return{
                 'status': 'success',

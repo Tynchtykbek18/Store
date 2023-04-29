@@ -23,6 +23,7 @@ from rest_framework.permissions import AllowAny
 import users.urls
 import catalog.urls
 import orders.urls
+import payment.urls
 
 
 
@@ -45,6 +46,7 @@ urlpatterns = [
     path('', include(users.urls)),
     path('', include(catalog.urls)),
     path('', include(orders.urls)),
+    path('', include(payment.urls)),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

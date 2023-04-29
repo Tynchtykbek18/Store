@@ -4,7 +4,7 @@ from .models import CustomUser
 from .serializers import UserSerializer, RegisterSerializer
 
 
-class UserApiView(generics.ListCreateAPIView):
+class UserApiView(generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsAdminUser,  )
